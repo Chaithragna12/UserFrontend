@@ -1,0 +1,221 @@
+/* Main Container */
+.homepage-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  /* Hero Section (Flexbox for Image & Text Alignment) */
+  .hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  /* Hero Content on the Left */
+  .hero-content {
+    flex: 1;
+    text-align: left;
+    max-width: 500px;
+  }
+  
+  .hero-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  /* Adjust h1 - move slightly to the left */
+  .hero-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    margin-left: -150px; /* Moves text slightly to the left */
+  }
+  /* Adjust h5 - Move left, bold, and italic */
+  .hero-description {
+    font-size: 20px;
+    font-weight: bold; /* Makes text bold */
+    font-style: italic; /* Makes text italic */
+    color: #555;
+    margin-left: -125px; /* Moves text slightly to the left */
+    text-align: left;
+    line-height: 1.6;
+  }
+  /* Call to Action Button */
+  .cta-button {
+    display: inline-block;
+    background-color: rgb(167, 68, 68);
+    color: white;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease-in-out;
+    margin-top: 20px; /* Adds spacing after h5 */
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .cta-button:hover {
+    background-color: rgb(196, 93, 93);
+  }
+  
+  
+  /* Adjust p - move content towards right & left */
+  .description {
+    font-size: 20px;
+    color: #555;
+    line-height: 1.6;
+    margin-left: -100px;
+    text-align: left; /* Spread text evenly */
+    padding: 0 20px; /* Adds spacing on both sides */
+  }
+  
+  
+  .highlight {
+    color: red;
+  }
+  
+  .hero-description {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  
+  /* Call to Action Button */
+  .cta-button {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .cta-button:hover {
+    background-color: darkred;
+  }
+  
+  /* Hero Image on the Right */
+  .hero-image-container {
+    flex: 1;
+    text-align: center; /* Center alignment for all screen sizes */
+    margin: 50px auto 0; /* Simplified margins */
+    max-width: 100%; /* Ensure container doesn't exceed parent width */
+    overflow: hidden; /* Prevent content from spilling out */
+  }
+  
+  .hero-image {
+    width: 100%; /* Responsive width */
+    max-width: 500px; /* Slightly reduced from 600px */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 1);
+    object-fit: contain; /* Changed to contain to ensure full image visibility */
+    display: block; /* Removes potential inline spacing issues */
+    margin: 0 auto; /* Center the image */
+  }
+  
+  
+  /* Feature Section (Grid Layout) */
+  .feature-section {
+    margin-top: 50px;
+  }
+  
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+  }
+  
+  /* Media (Video & Image) on the Left */
+  .feature-media {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .floating-media {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .floating-media:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Centered Content */
+  .feature-content {
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .feature-content h3 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .feature-content p {
+    font-size: 25px;
+    color: #555;
+  }
+  @media (max-width: 992px) {
+    .hero-image {
+      max-width: 400px; /* Smaller on medium screens */
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero-section {
+      flex-direction: column-reverse;
+      gap: 15px; /* Reduced gap between elements */
+    }
+    
+    .hero-image-container {
+      margin: 20px auto; /* Reduced top margin */
+      padding: 0 15px; /* Add some padding to prevent edge touching */
+      width: 100%;
+    }
+    
+    .hero-image {
+      max-width: 350px; /* Even smaller on mobile screens */
+    }
+    
+    /* Fix all the negative margins in text elements */
+    .hero-title, 
+    .hero-description, 
+    .description {
+      margin-left: 0;
+      margin-right: 0;
+      text-align: center;
+      padding: 0 10px; //* Add some padding for better text display */
+    }
+    
+    /* Center the CTA button */
+    .cta-button {
+      display: block;
+      margin: 20px auto;
+      max-width: 200px; /* Prevent button from being too wide */
+    }
+  }
+  @media (max-width: 480px) {
+    .hero-image {
+      max-width: 280px; /* Further reduced for very small screens */
+    }
+  }

@@ -1,0 +1,141 @@
+/* Navbar Container */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    z-index: 50;
+  }
+  
+  /* Navbar Inner Container */
+  .navbar-container {
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 150%;
+    /* max-width: 1200px; */
+    padding: 0 20px;
+  }
+  
+  /* Navbar Logo */
+  .navbar-logo img {
+    height: 50px;
+    width: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .navbar-logo img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Navbar Links */
+  .navbar-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Navbar Buttons */
+  .nav-button {
+    color: white;
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+  }
+  
+  /* Hover Effect: Buttons turn red */
+  .nav-button:hover {
+    color: rgb(191, 108, 108);
+    transform: scale(1.1);
+  }
+  
+  /* Active Button */
+  .nav-button.active {
+    font-weight: bold;
+    color: rgb(186, 110, 110);
+  }
+  
+  /* Profile Dropdown */
+  .profile-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    width: 180px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .profile-dropdown a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    transition: background 0.3s;
+  }
+  
+  .profile-dropdown a:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .profile-dropdown .logout {
+    color: rgb(201, 108, 108);
+  }
+  
+  /* Mobile Menu */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 75%;
+    max-width: 300px;
+    background-color: white;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    padding: 20px;
+  }
+  
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+  
+  .mobile-menu .menu-items button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: black;
+    padding: 10px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .mobile-menu .menu-items button:hover {
+    color: rgb(228, 112, 112);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar-links {
+      display: none;
+    }
+  
+    .navbar-container {
+      justify-content: space-between;
+      width: 95%;
+    }
+  }
+  

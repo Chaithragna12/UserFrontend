@@ -1,0 +1,141 @@
+.contact-container {
+    max-width: 1250px;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+  }
+  #contact {
+    padding-top: 40px; /* Adjust this value based on your navbar height */
+  }
+  
+  
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #0078d7;
+  }
+  
+  .subtitle {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Two-column Layout */
+  .content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  /* Left Section: Contact Information */
+  .contact-info {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+  }
+  
+  .info-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .icon {
+    font-size: 24px;
+    color: #0078d7;
+  }
+  
+  .info-section h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #0078d7;
+  }
+  
+  .info-section p {
+    margin: 0;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  /* Right Section: Contact Form */
+  .contact-form-container {
+    width: 50%;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .contact-form h3 {
+    margin-bottom: 10px;
+    color: #0078d7;
+  }
+  
+  .contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .book-table {
+    background: #0078d7;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .book-table:hover {
+    background: #0056b3;
+  }
+  
+  /* Social Media Links */
+  .social-links {
+    margin-top: 20px;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .social-icon img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .social-icon img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .contact-info, .contact-form-container {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .info-section {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
