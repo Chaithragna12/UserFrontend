@@ -20,7 +20,7 @@ const Cart = () => {
 
     const fetchCart = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/admin/cart/${userId}`);
+        const { data } = await axios.get(`https://akshaya-be.onrender.com/api/admin/cart/${userId}`);
         setCart(data.cart);
       } catch (err) {
         setError(err.response?.data?.message || "Failed to fetch cart");
@@ -34,7 +34,7 @@ const Cart = () => {
 
   const removeFromCart = async (productId) => {
     try {
-      await axios.delete("http://localhost:5000/api/admin/cart/remove", {
+      await axios.delete("https://akshaya-be.onrender.com/api/admin/cart/remove", {
         data: { userId, productId }
       });
       setCart(cart.filter((item) => item.productId._id !== productId));
@@ -46,7 +46,7 @@ const Cart = () => {
 
   const clearCart = async () => {
     try {
-      await axios.delete("http://localhost:5000/api/admin/cart/clear", {
+      await axios.delete("https://akshaya-be.onrender.com/api/admin/cart/clear", {
         data: { userId }
       });
       setCart([]);
@@ -58,14 +58,14 @@ const Cart = () => {
 
   const placeOrder = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/admin/order", { userId });
+      const response = await axios.post("https://akshaya-be.onrender.com/api/admin/order", { userId });
 
       if (response.status === 200) {
         console.log("Order placed successfully");
         alert("Order placed successfully! 🎉");
         navigate(`/order-history/${userId}`);
 
-        const { data } = await axios.get(`http://localhost:5000/api/admin/cart/${userId}`);
+        const { data } = await axios.get(`https://akshaya-be.onrender.com/api/admin/cart/${userId}`);
         setCart(data.cart);
       }
     } catch (err) {

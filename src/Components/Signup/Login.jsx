@@ -17,7 +17,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/api/admin/login", formData);
+      const response = await axios.post("https://akshaya-be.onrender.com/api/admin/login", formData);
 
       console.log("Full Response:", response.data);
 

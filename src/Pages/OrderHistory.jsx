@@ -13,7 +13,7 @@ const OrderHistory = () => {
     const fetchOrderHistory = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/admin/order/history/${userId}`
+          `https://akshaya-be.onrender.com/api/admin/order/history/${userId}`
         );
         console.log("Order History API Response:", response.data); // Debug log
         setOrders(response.data.orders);

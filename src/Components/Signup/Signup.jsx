@@ -22,7 +22,7 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/api/admin/signup", formData);
+      const response = await axios.post("https://akshaya-be.onrender.com/api/admin/signup", formData);
       
       console.log("Full Response:", response.data);
       

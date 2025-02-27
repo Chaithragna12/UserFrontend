@@ -32,7 +32,7 @@ const RestaurantMenu = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/admin/all");
+        const response = await axios.get("https://akshaya-be.onrender.com/api/admin/all");
         setProducts(response.data);
       } finally {
         setIsLoading(false);
@@ -53,7 +53,7 @@ const RestaurantMenu = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/admin/add", {
+      const response = await axios.post("https://akshaya-be.onrender.com/api/admin/add", {
         userId,
         productId,
         quantity: 1
