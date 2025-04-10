@@ -8,7 +8,9 @@ const RestaurantMenu = () => {
   const handleFullMenuClick = (event) => {
     event.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" });
-    navigate('/demo1'); // Navigate to full menu page
+    navigate('/buy'); // Navigate to full menu page
+    // navigate('/demo1'); // Navigate to full menu page
+
   };
   const navigate = useNavigate(); // Initialize useNavigate
 

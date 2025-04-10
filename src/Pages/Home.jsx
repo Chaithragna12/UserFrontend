@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div>
         <Nav />
-        <Homepage />
+        <Homepage />  
         <AboutUs />
         <Menu />
         <Reviews />

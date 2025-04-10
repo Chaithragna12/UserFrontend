@@ -1,0 +1,343 @@
+/* General Styles */
+.fmenu-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.fheader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 10px 40px;
+}
+.floader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.floader {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border-left-color: #3498db;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.fhome-button {
+    display: flex;
+    align-items: center;
+    background: #4a90e2; 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    left: 10px; /* Adjust position */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.fhome-button:hover {
+    background:  #3a80d2;;
+}
+
+.fhome-button .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    color: white;
+}
+
+.fmenu-title {
+    flex-grow: 1;
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    flex: 1;
+    padding-left: 40px;
+    /* New styles below */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, #333, #666);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    position: relative;
+    padding-bottom: 10px;
+}
+.fmenu-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(90deg, #4a90e2, #2ecc71);
+    border-radius: 3px;
+}
+/* Menu Layout using Flexbox */
+.fmenu-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Category Card */
+.fcategory-card {
+    flex: 1 1 calc(50% - 10px); /* This ensures two cards per row */
+    max-width: calc(50% - 10px);
+    min-width: 300px;
+    /* border: 2px solid red; */
+    background: #fff;
+    padding: 15px;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 10px auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* .fcategory-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+} */
+.fcategory-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Ensure no empty category cards appear */
+.fcategory-card:empty {
+    display: none;
+}
+
+.fcategory-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.fcategory-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+/* Product List */
+.fproduct-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: auto; /* Remove any fixed height */
+}
+
+.fproduct-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+.fproduct-name {
+    font-size: 16px;
+    font-weight: 500;
+    flex: 1;
+    text-align: left;
+}
+
+.fproduct-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #27ae60;
+    margin-right: 10px;
+}
+
+.fadd-to-cart {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.fadd-to-cart:hover {
+    background: #27ae60;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .fmenu-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fcategory-card {
+        flex: 1 1 100%; /* Full width on smaller screens */
+        max-width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .fcategory-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+@media (min-width: 1024px) {
+    .fmenu-grid {
+        justify-content: center;
+        max-width: 1200px; /* Increased max-width for larger screens */
+        margin: 0 auto;
+    }
+
+    .fcategory-card {
+        flex: 1 1 calc(50% - 20px);
+        max-width: calc(70% - 20px);
+        margin: 15px auto;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* border: 1px solid black; Optional: for debugging */
+
+    }   
+    .fproduct-list {
+        margin-top: 10px;
+    }
+    
+    .fproduct-item {
+        padding: 12px 15px;
+        margin-bottom: 8px;
+        background: #f8f8f8;
+        transition: background-color 0.2s ease;
+    }
+    
+    .fproduct-item:hover {
+        background: #f0f0f0;
+    }
+    
+    .fproduct-name {
+        font-size: 17px;
+    }
+    
+    .fproduct-price {
+        font-size: 18px;
+        margin-right: 20px; /* Adjusted from 10rem which was too large */
+        color: #218c53;
+    }
+    
+    .fadd-to-cart {
+        padding: 8px 15px;
+        font-weight: 500;
+    }
+    .fcategory-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .fcategory-image {
+        height: 280px;
+        border-radius: 12px;
+        margin-bottom: 0; /* Remove margin as it's on the container now */
+    }
+    .fcategory-image-container {
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.5s ease;
+    }
+    .fcategory-image-container::after {
+        height: 50%; /* Slightly larger gradient area on bigger screens */
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+    }
+    .fcategory-image::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 40px; /* Height of the gradient shadow */
+        background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.2));
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        z-index: 1;
+        pointer-events: none; /* Makes sure it doesn't interfere with clicks */
+    }
+    .fcategory-card:hover .fcategory-image-container {
+        transform: scale(1.03);
+    }
+
+    .fcategory-name {
+        font-size: 24px; /* Larger font for category names */
+        margin: 15px 0;
+        color: #333;
+    }
+}
+@media (max-width: 600px) {
+    .fheader {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        /* font-size: larger; */
+    }
+
+    .fhome-button {
+        position: absolute;
+        /* right: 10px;  */
+        top: 10px; /* Position at the top instead of 50% */
+        transform: none; /* Remove the Y transform */
+        margin-bottom: 0; /* Remove the bottom margin */
+        /* border: 2px solid black; */
+    }
+
+    .fmenu-title {
+        text-align: center;
+        padding-left: 0;
+        margin-top: 45px;
+        font-size: 28px;  /* Slightly smaller on mobile */
+    }
+    
+    .fmenu-title::after {
+        width: 150px;  /* Slightly narrower underline on mobile */
+    }
+    .fcategory-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        width: 90%; /* Ensures it fits inside the screen */
+        /* border: 2px solid black; */
+    }
+}

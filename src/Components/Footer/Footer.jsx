@@ -1,39 +1,28 @@
-import React, { useState } from "react";
-import Map from "../../assets/map.png"; // Adjust path if necessary
-import Web_plus_academy_logo from "../../assets/WPAlogo.png";
-import { FaFacebook, FaInstagram, FaLinkedin, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaPlus, FaMinus } from 'react-icons/fa';
-import "./footer.css"; // Import the new CSS file
+import React from "react";
+import { 
+  FaFacebook, FaInstagram, FaLinkedin, 
+  FaPhoneAlt, FaEnvelope, FaMapMarkerAlt 
+} from 'react-icons/fa';
+import "./footer.css";
 
 const MapSection = () => {
-    const [zoomLevel, setZoomLevel] = useState(1); // Initial zoom level
-
-  const handleZoomIn = () => {
-    setZoomLevel((prevZoom) => Math.min(prevZoom + 0.2, 2)); // Max zoom: 2x
-  };
-
-  const handleZoomOut = () => {
-    setZoomLevel((prevZoom) => Math.max(prevZoom - 0.2, 1)); // Min zoom: 1x (original size)
-  };
   return (
     <div className="map-section-container">
-      {/* 🌍 Centered Map */}
-      <div className="map-container">
-      <img 
-   src={Map} 
-   alt="Location map" 
-   className="map-image" 
-   style={{ transform: `scale(${zoomLevel})` }} 
-/>
-
-        <div className="zoom-controls">
-          <button onClick={handleZoomIn} className="zoom-button"><FaPlus /></button>
-          <button onClick={handleZoomOut} className="zoom-button"><FaMinus /></button>
-        </div>
+      {/* 📍 Google Maps Embed */}
+      <div className="google-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4808.233468894335!2d78.50713216163193!3d13.56488019298637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb2667079e76515%3A0x753717a88793094b!2sAkshaya%20Family%20Garden%20Restaurant!5e0!3m2!1sen!2sin!4v1740808818031!5m2!1sen!2sin"
+          width="600"
+          height="450"
+          style={{ border: 0, width: "100%", marginTop: "20px" }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
 
-      {/* 📍 About Us, Opening Hours, Quick Links in a Single Line */}
+      {/* 📍 Contact Details */}
       <div className="details-row">
-        {/* About Us */}
         <div className="details-box">
           <h2 className="details-title">About Us</h2>
           <div className="contact-item">
@@ -46,44 +35,35 @@ const MapSection = () => {
           </div>
           <div className="contact-item">
             <FaMapMarkerAlt className="icon" />
-            <p>Anantapur - Tirupati Hwy, Kadiri, Angallu, Chittoor - 517326</p>
+            <p>Akshaya Family Garden Restaurant, Madanapalle</p>
           </div>
         </div>
-        {/* Opening Hours */}
+
         <div className="details-box">
           <h2 className="details-title">Opening Hours</h2>
           <p>Every day: 12pm - 10pm</p>
           <p>Sunday: 10am - 10pm</p>
         </div>
 
-        {/* Quick Links */}
         <div className="details-box">
           <h2 className="details-title">Quick Links</h2>
           <ul className="quick-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#Menu">Menu</a></li>
+            <li><a href="#About">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
       </div>
 
-      {/* 🌐 Social Media Icons */}
+      {/* 🌐 Social Media Links */}
       <div className="social-links">
         <a href="https://www.facebook.com/profile.php?id=61561544652969" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
         <a href="https://www.instagram.com/webplusacademy?igsh=ZGVtaXFrcjNjcGN0" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
         <a href="https://www.linkedin.com/in/saran-velmurugan-357499238" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
       </div>
-{/* 📜 Footer */}
-
-
-
-
-      {/* 🔥 Logo */}
-      {/* <div className="logo-container">
-        <img src={Web_plus_academy_logo} alt="Web Plus Academy Logo" />
-      </div> */}
     </div>
   );
 };
+
 export default MapSection;

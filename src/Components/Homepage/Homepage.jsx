@@ -28,7 +28,7 @@ const Homepage = () => {
           </h5>
 
           {/* Explore Menu Button */}
-          <a href="#menu" className="cta-button">Explore Menu to order</a>
+          <a href="#Menu" className="cta-button">Explore Menu to order</a>
         </div>
 
         {/* Hero Image (Right) */}

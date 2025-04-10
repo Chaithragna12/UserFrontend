@@ -1,0 +1,76 @@
+/* Popup Styles */
+.popup-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .popup-container.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .popup-box {
+    min-width: 280px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideIn 0.3s forwards;
+  }
+  
+  .popup-box.success {
+    background-color: #e7f7ee;
+    border-left: 4px solid #2ecc71;
+  }
+  
+  .popup-box.error {
+    background-color: #fee7e7;
+    border-left: 4px solid #e74c3c;
+  }
+  
+  .popup-box.warning {
+    background-color: #fff8e6;
+    border-left: 4px solid #f39c12;
+  }
+  
+  .popup-content {
+    flex: 1;
+  }
+  
+  .popup-content p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .popup-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+    padding: 0 0 0 10px;
+    margin-left: 10px;
+  }
+  
+  .popup-close:hover {
+    color: #333;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }

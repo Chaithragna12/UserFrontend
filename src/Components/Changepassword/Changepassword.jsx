@@ -14,7 +14,7 @@ const ForgotPassword = () => {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://akshaya-be.onrender.com/api/admin/forgot-password", { email });
+      const response = await axios.post("https://userbackend-385g.onrender.com/api/admin/forgot-password", { email });
       Swal.fire("Success!", response.data.message, "success");
       setStep(2); // Move to next step (OTP verification)
     } catch (error) {
@@ -25,7 +25,7 @@ const ForgotPassword = () => {
   const handleResetPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://akshaya-be.onrender.com/api/admin/reset-password", { email, otp, newPassword });
+      const response = await axios.post("https://userbackend-385g.onrender.com/api/admin/reset-password", { email, otp, newPassword });
       Swal.fire("Success!", response.data.message, "success");
       setStep(1); // Reset process after success
       setEmail("");

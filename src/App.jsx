@@ -4,9 +4,9 @@ import Signup from './Components/Signup/Signup';
 import Login from './Components/Signup/Login';
 import Home from './Pages/Home';
 import Changepassword from './Components/Changepassword/Changepassword';
-import Demo1 from './Pages/demo1';
-import Buy from './Pages/Buy';
-import OrderHistory from './Pages/OrderHistory';
+import Buy from './Pages/Cart';
+import Cart from './Pages/last';
+import Update from './Pages/Update';
 const App = () => {
   return (
       <div>
@@ -16,9 +16,9 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/changepassword" element={<Changepassword />} />
-          <Route path="/demo1" element={<Demo1 />} />
-          <Route path="/buy/:userId" element={<Buy />} />
-          <Route path="/order-history/:userId" element={<OrderHistory />} />
+          <Route path="/buy" element={<Buy />} />
+          <Route path="/order/:userId" element={<Cart />} />
+          <Route path="/update/:userId" element={<Update />} />
         </Routes>
     </Router>
       </div>

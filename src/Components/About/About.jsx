@@ -8,12 +8,17 @@ const AboutUs = () => {
       <div className="about-content">
         <h1 className="about-title">ABOUT AKSHAYA RESTAURANT</h1>
         <div className="title-underline"></div>
-
+        
         <div className="about-layout">
           <div className="image-container">
-            <img src={AboutImage} alt="Akshaya Restaurant Ambience" className="about-image" />
+            <img 
+              src={AboutImage} 
+              alt="Akshaya Restaurant Ambience" 
+              className="about-image"
+              loading="lazy" // Added for performance
+            />
           </div>
-
+          
           <div className="text-content">
             <p className="quote">"Savor the taste of tradition with every bite"</p>
             <p className="description">
@@ -28,6 +33,7 @@ const AboutUs = () => {
             <p className="tagline">
               Join us at Akshaya Restaurant, where food meets passion, and every meal feels like home.
             </p>
+            {/* <nav></nav> */}
           </div>
         </div>
       </div>

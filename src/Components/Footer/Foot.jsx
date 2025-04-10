@@ -15,7 +15,7 @@ const MapSection = () => {
 
     {/* Center Content */}
     <div className="foot-text">
-      <p>© 2024 Akshaya. All Rights Reserved</p>
+      <p>© 2025 Akshaya. All Rights Reserved</p>
       <p>Script Design & Development by</p>
       <p className="foot-bold">SAREDUFY WebplusAcademy Pvt. Ltd.</p>
     </div>

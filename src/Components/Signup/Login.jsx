@@ -17,14 +17,22 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("https://akshaya-be.onrender.com/api/admin/login", formData);
-
-      console.log("Full Response:", response.data);
-
-      if (response.data.userId) {
-        localStorage.setItem("userId", response.data.userId);
+      const response = await axios.post("https://userbackend-385g.onrender.com/api/admin/login", formData);
+  
+      // console.log("Full Response:", response);
+      // console.log("Response Data:", response.data);
+  
+      // Correct way to access userId
+      if (response.data.user && response.data.user.userId) {
+        localStorage.setItem("userId", response.data.user.userId);
         localStorage.setItem("userEmail", formData.email);
+        localStorage.setItem("isOnline", "true");
+  
+        // console.log("Navigating to Home...");
         navigate("/");
+      } else {
+        console.error("userId is missing in response:", response.data);
+        setMessage("Login failed. Unexpected response structure.");
       }
     } catch (error) {
       console.error("Login failed:", error.response?.data || error.message);
@@ -33,6 +41,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+  
 
   return (
     <div className="login-container">

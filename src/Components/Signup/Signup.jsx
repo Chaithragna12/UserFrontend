@@ -22,14 +22,21 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("https://akshaya-be.onrender.com/api/admin/signup", formData);
-      
-      console.log("Full Response:", response.data);
-      
-      if (response.data.userId) {
-        localStorage.setItem("userId", response.data.userId);
+      const response = await axios.post("https://userbackend-385g.onrender.com/api/admin/signup", formData);
+  
+      // console.log("Full Response:", response);
+      // console.log("Response Data:", response.data);
+  
+      // Fix: Correct way to access userId
+      if (response.data.user && response.data.user.userId) {
+        localStorage.setItem("userId", response.data.user.userId);
         localStorage.setItem("userEmail", formData.email);
+        localStorage.setItem("isOnline", "true");
+  
+        // console.log("Navigating to /");
         navigate("/");
+      } else {
+        console.error("userId is missing in response:", response.data);
       }
     } catch (error) {
       console.error("Signup failed:", error.response?.data || error.message);
@@ -38,6 +45,9 @@ const Signup = () => {
       setLoading(false);
     }
   };
+  
+  
+  
 
   return (
     <div className="signup-container">

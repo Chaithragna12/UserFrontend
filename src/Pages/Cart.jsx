@@ -1,160 +1,170 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { Loader2, ShoppingCart, Trash2, Package } from 'lucide-react';
-import './cart.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { HomeIcon } from "@heroicons/react/24/outline";
+import "./menus.css";
+import Popup from "./Popup"; // Import the Popup component
 
-const Cart = () => {
-  const { userId } = useParams();
-  const navigate = useNavigate();
-  const [cart, setCart] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const ProductsByCategory = () => {
+    const [categories, setCategories] = useState([]);
+    const [products, setProducts] = useState([]);
+    const [groupedProducts, setGroupedProducts] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
+    
+    // Popup state
+    const [popup, setPopup] = useState({
+        isOpen: false,
+        message: "",
+        type: "success"
+    });
 
-  useEffect(() => {
-    if (!userId) {
-      setError("User ID is missing");
-      setLoading(false);
-      return;
-    }
+    const fetchData = async () => {
+        try {
+            // Set loading to true at the start of data fetching
+            setIsLoading(true);
 
-    const fetchCart = async () => {
-      try {
-        const { data } = await axios.get(`https://akshaya-be.onrender.com/api/admin/cart/${userId}`);
-        setCart(data.cart);
-      } catch (err) {
-        setError(err.response?.data?.message || "Failed to fetch cart");
-      } finally {
-        setLoading(false);
-      }
+            // Fetch categories
+            const categoriesRes = await fetch("https://adminbackend-dg8o.onrender.com/api/categories/categories");
+            const categoriesData = await categoriesRes.json();
+            setCategories(categoriesData);
+
+            // Fetch products
+            const productsRes = await fetch("https://adminbackend-dg8o.onrender.com/api/products/all");
+            const productsData = await productsRes.json();
+            setProducts(productsData);
+
+            // Group products by category
+            const grouped = productsData.reduce((acc, product) => {
+                const categoryId = product.category._id;
+                if (!acc[categoryId]) acc[categoryId] = [];
+                acc[categoryId].push(product);
+                return acc;
+            }, {});
+            
+            setGroupedProducts(grouped);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            // Show error popup
+            showPopup("Failed to load menu items. Please try again.", "error");
+            // Ensure loading state is turned off even if there's an error
+            setIsLoading(false);
+        } finally {
+            // Ensure loading state is turned off after data fetching
+            setIsLoading(false);
+        }
     };
 
-    fetchCart();
-  }, [userId]);
+    useEffect(() => {
+        // Fetch data when component mounts
+        fetchData();
+    }, []);
 
-  const removeFromCart = async (productId) => {
-    try {
-      await axios.delete("https://akshaya-be.onrender.com/api/admin/cart/remove", {
-        data: { userId, productId }
-      });
-      setCart(cart.filter((item) => item.productId._id !== productId));
-    } catch (err) {
-      console.error("Error removing item:", err);
-      setError("Failed to remove item");
-    }
-  };
+    // Function to show popup
+    const showPopup = (message, type = "success") => {
+        setPopup({
+            isOpen: true,
+            message,
+            type
+        });
+    };
 
-  const clearCart = async () => {
-    try {
-      await axios.delete("https://akshaya-be.onrender.com/api/admin/cart/clear", {
-        data: { userId }
-      });
-      setCart([]);
-    } catch (err) {
-      console.error("Error clearing cart:", err);
-      setError("Failed to clear cart");
-    }
-  };
+    // Function to close popup
+    const closePopup = () => {
+        setPopup({
+            ...popup,
+            isOpen: false
+        });
+    };
 
-  const placeOrder = async () => {
-    try {
-      const response = await axios.post("https://akshaya-be.onrender.com/api/admin/order", { userId });
+    const addToCart = async (productId, productName) => {
+        const userId = localStorage.getItem("userId");
 
-      if (response.status === 200) {
-        console.log("Order placed successfully");
-        alert("Order placed successfully! 🎉");
-        navigate(`/order-history/${userId}`);
+        if (!userId) {
+            // Show login required popup instead of alert
+            showPopup("Please log in to add items to your cart.", "warning");
+            // Wait a moment before redirecting to let the user see the message
+            setTimeout(() => {
+                navigate("/login");
+            }, 1500);
+            return;
+        }
+        
+        try {
+            await axios.post("https://userbackend-385g.onrender.com/api/admin/add", {
+                userId: localStorage.getItem("userId"),
+                productId,
+                quantity: 1
+            });
+            // Show success popup instead of alert
+            showPopup(`${productName} added to your cart!`, "success");
+        } catch (error) {
+            console.error("Error adding to cart:", error);
+            // Show error popup
+            showPopup("Failed to add item to cart. Please try again.", "error");
+        }
+    };
 
-        const { data } = await axios.get(`https://akshaya-be.onrender.com/api/admin/cart/${userId}`);
-        setCart(data.cart);
-      }
-    } catch (err) {
-      console.error("Error placing order:", err);
-      setError("Failed to place order");
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="loading-spinner">
-        <Loader2 className="spinner-icon" />
-      </div>
+    const validCategories = categories.filter(category => 
+        groupedProducts[category._id]?.length > 0
     );
-  }
 
-  if (error) {
-    return (
-      <div className="error-message">
-        {error}
-      </div>
-    );
-  }
-
-  const totalAmount = cart.reduce((sum, item) => sum + item.productId.price, 0);
-
-  return (
-    <div className="cart-container">
-      <div className="cart-header">
-        <h1 className="cart-title">
-          <ShoppingCart className="cart-icon" />
-          Your Cart
-        </h1>
-      </div>
-      
-      <div className="cart-content">
-        {cart.length > 0 ? (
-          <div className="cart-items">
-            {cart.map((item, index) => (
-              <div key={index} className="cart-item">
-                <div className="item-details">
-                  <div className="item-image-placeholder">
-                    <Package className="placeholder-icon" />
-                  </div>
-                  <div className="item-info">
-                    <h3>{item.productId.name}</h3>
-                    <p className="item-price">${item.productId.price}</p>
-                  </div>
-                </div>
-                <button
-                  className="button button-danger"
-                  onClick={() => removeFromCart(item.productId._id)}
-                >
-                  <Trash2 className="button-icon" />
-                </button>
-              </div>
-            ))}
-
-            <div className="cart-summary">
-              <div className="total-amount">
-                <span>Total:</span>
-                <span>${totalAmount.toFixed(2)}</span>
-              </div>
-              
-              <div className="button-group">
-                <button
-                  className="button button-outline"
-                  onClick={clearCart}
-                >
-                  Clear Cart
-                </button>
-                <button
-                  className="button button-primary"
-                  onClick={placeOrder}
-                >
-                  Place Order
-                </button>
-              </div>
+    if (isLoading) {
+        return (
+            <div className="floader-container">
+                <div className="floader"></div>
             </div>
-          </div>
-        ) : (
-          <div className="empty-cart">
-            <ShoppingCart className="empty-cart-icon" />
-            <p>Your cart is empty.</p>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+        );
+    }
+
+    return (
+        <div className="fmenu-container">
+            {/* Popup Component */}
+            <Popup 
+                message={popup.message}
+                type={popup.type}
+                isOpen={popup.isOpen}
+                onClose={closePopup}
+            />
+
+            <div className="fheader">
+                <button className="fhome-button" onClick={() => navigate("/")}>
+                    <HomeIcon className="icon" />
+                </button>
+                <h1 className="fmenu-title">Explore Our Menu</h1>
+            </div>
+
+            <div className="fmenu-grid">
+                {validCategories.map(category => (
+                    <div key={category._id} className="fcategory-card">
+                        <div className="fcategory-image-container">
+                            <img 
+                                src={category.photo} 
+                                alt={category.name} 
+                                className="fcategory-image" 
+                            />
+                        </div>
+                        <h2 className="fcategory-name">{category.name}</h2>
+                        
+                        <div className="fproduct-list">
+                            {groupedProducts[category._id]?.map(product => (
+                                <div key={product._id} className="fproduct-item">
+                                    <span className="fproduct-name">{product.name}</span>
+                                    <span className="fproduct-price">₹{product.price}</span>
+                                    <button 
+                                        className="fadd-to-cart" 
+                                        onClick={() => addToCart(product._id, product.name)}
+                                    >
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 };
 
-export default Cart;
+export default ProductsByCategory;

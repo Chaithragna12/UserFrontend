@@ -3,7 +3,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 25px 3px;
   }
   
   /* Hero Section (Flexbox for Image & Text Alignment) */
@@ -27,6 +27,7 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 15px;
+    /* border: 2px solid black; */
   }
   /* Adjust h1 - move slightly to the left */
   .hero-title {
@@ -108,9 +109,10 @@
   .hero-image-container {
     flex: 1;
     text-align: center; /* Center alignment for all screen sizes */
-    margin: 50px auto 0; /* Simplified margins */
+    margin: 50px auto 0; 
     max-width: 100%; /* Ensure container doesn't exceed parent width */
     overflow: hidden; /* Prevent content from spilling out */
+    /* border: 2px solid black; */
   }
   
   .hero-image {
@@ -184,38 +186,46 @@
   @media (max-width: 768px) {
     .hero-section {
       flex-direction: column-reverse;
-      gap: 15px; /* Reduced gap between elements */
+      align-items: center;
+      text-align: center;
+      gap: 20px;
     }
-    
-    .hero-image-container {
-      margin: 20px auto; /* Reduced top margin */
-      padding: 0 15px; /* Add some padding to prevent edge touching */
-      width: 100%;
+  
+    .hero-content {
+      max-width: 100%;
     }
-    
-    .hero-image {
-      max-width: 350px; /* Even smaller on mobile screens */
-    }
-    
-    /* Fix all the negative margins in text elements */
-    .hero-title, 
-    .hero-description, 
+  
+    .hero-title,
+    .hero-description,
     .description {
       margin-left: 0;
       margin-right: 0;
       text-align: center;
-      padding: 0 10px; //* Add some padding for better text display */
+      padding: 0 15px;
     }
-    
-    /* Center the CTA button */
+  
     .cta-button {
       display: block;
       margin: 20px auto;
-      max-width: 200px; /* Prevent button from being too wide */
+      max-width: 250px;
+    }
+  
+    .hero-image-container {
+      width: 100%;
+      text-align: center;
+      margin: 20px auto;
+    }
+  
+    .hero-image {
+      max-width: 350px;
+      width: 90%;
     }
   }
+  
   @media (max-width: 480px) {
     .hero-image {
-      max-width: 280px; /* Further reduced for very small screens */
+      max-width: 280px;
+      width: 100%;
     }
   }
+  

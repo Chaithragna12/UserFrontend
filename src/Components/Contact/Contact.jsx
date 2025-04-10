@@ -67,7 +67,7 @@ const ContactForm = () => {
               <input type="email" placeholder="Your Email" required />
               <input type="text" placeholder="Subject" required />
               <textarea placeholder="Message" required></textarea>
-              <button type="submit" className="book-table">BOOK A TABLE</button>
+              <button type="submit" className="book-table">Send</button>
             </form>
           </div>
         </div>
